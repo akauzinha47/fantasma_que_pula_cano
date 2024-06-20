@@ -18,9 +18,11 @@ int main()
         }
     }
 
-    // array[HEIGHT - 3][8] = 9;
+    // int y1 = 13;
+    // int y2 = 17;
+    // int y3 = 5;
 
-    int y = 8;
+    int y  = 8;
     int x1 = WIDTH - 4;
     int x2 = 0;
     int x3 = 0;
@@ -71,6 +73,12 @@ int main()
             x3 = WIDTH - 4;
         }
 
+        if (x1 != 0)
+        {
+            pipe_movement(array, x1, y);
+            x1--;
+        }
+
         if (x2 != 0)
         {
             pipe_movement(array, x2, y);
@@ -81,12 +89,6 @@ int main()
         {
             pipe_movement(array, x3, y);
             x3--;
-        }
-
-        if (x1 != 0)
-        {
-            pipe_movement(array, x1, y);
-            x1--;
         }
 
         rendering(array);
