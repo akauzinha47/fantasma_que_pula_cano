@@ -47,7 +47,7 @@ int main()
 
     }
 
-    for (int i = (HEIGHT - y1) - SPACE_BTW; i > 0; i--)
+    for (int i = (HEIGHT - y1) - SPACE_BTW; i >= 0; i--)
     {
         map[i][first_pipe.x] = 1;
         map[i][first_pipe.x + 1] = 1;

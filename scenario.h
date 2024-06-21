@@ -35,7 +35,7 @@ void pipe_movement(int matrix[][WIDTH], Pipe *pipe)
         matrix[i][pipe->x + 2] = 0;
     }
 
-    for (int i = (HEIGHT - pipe->y) - SPACE_BTW; i > 0; i--)
+    for (int i = (HEIGHT - pipe->y) - SPACE_BTW; i >= 0; i--)
     {
         matrix[i][pipe->x - 1] = 1;
         matrix[i][pipe->x + 2] = 0;
@@ -61,9 +61,9 @@ void rendering(int matrix[][WIDTH])
             {
                 printf("  ");
             } else if (matrix[i][j] == 9){
-                printf("^^");
+                printf("\x1b[31m^^");
             } else {
-                printf("[]");
+                printf("\x1b[32m[]");
 
             }
             // printf("%d ", matrix[i][j]);
@@ -82,7 +82,7 @@ void restart_pipe(int matrix[][WIDTH], Pipe *pipe)
                 matrix[i][pipe->x + 2] = 0;
             }
 
-            for (int i = (HEIGHT - pipe->y) - SPACE_BTW; i > 0; i--)
+            for (int i = (HEIGHT - pipe->y) - SPACE_BTW; i >= 0; i--)
             {
                 matrix[i][pipe->x] = 0;
                 matrix[i][pipe->x + 1] = 0;
