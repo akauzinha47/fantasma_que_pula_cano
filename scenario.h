@@ -7,36 +7,38 @@
 
 #include <stdio.h>
 
-void pipe_movement(int matrix[][WIDTH], int x, int y)
+#include "structs.h"
+
+void pipe_movement(int matrix[][WIDTH], Pipe *pipe)
 {
     // check if the pipe has reached the end of the map
-    if (x == 0)
+    if (pipe->x == 0)
     {
-        for (int i = (HEIGHT - y); i < (HEIGHT); i++)
+        for (int i = (HEIGHT - pipe->y); i < (HEIGHT); i++)
         {
-            matrix[i][x] = 0;
-            matrix[i][x + 1] = 0;
-            matrix[i][x + 2] = 0;
+            matrix[i][pipe->x] = 0;
+            matrix[i][pipe->x + 1] = 0;
+            matrix[i][pipe->x + 2] = 0;
         }
 
-        for (int i = (HEIGHT - y) - SPACE_BTW; i > 0; i--)
+        for (int i = (HEIGHT - pipe->y) - SPACE_BTW; i > 0; i--)
         {
-            matrix[i][x] = 0;
-            matrix[i][x + 1] = 0;
-            matrix[i][x + 2] = 0;
+            matrix[i][pipe->x] = 0;
+            matrix[i][pipe->x + 1] = 0;
+            matrix[i][pipe->x + 2] = 0;
         }
         return;
     }
-    for (int i = (HEIGHT - y); i < (HEIGHT); i++)
+    for (int i = (HEIGHT - pipe->y); i < (HEIGHT); i++)
     {
-        matrix[i][x - 1] = 1;
-        matrix[i][x + 2] = 0;
+        matrix[i][pipe->x - 1] = 1;
+        matrix[i][pipe->x + 2] = 0;
     }
 
-    for (int i = (HEIGHT - y) - SPACE_BTW; i > 0; i--)
+    for (int i = (HEIGHT - pipe->y) - SPACE_BTW; i > 0; i--)
     {
-        matrix[i][x - 1] = 1;
-        matrix[i][x + 2] = 0;
+        matrix[i][pipe->x - 1] = 1;
+        matrix[i][pipe->x + 2] = 0;
     }
     
 }
@@ -70,23 +72,23 @@ void rendering(int matrix[][WIDTH])
     }
 }
 
-void restart_pipe(int matrix[][40], int *x, int y)
+void restart_pipe(int matrix[][40], Pipe *pipe)
 {
-    for (int i = (HEIGHT - y); i < (HEIGHT); i++)
+    for (int i = (HEIGHT - pipe->y); i < (HEIGHT); i++)
             {
-                matrix[i][*x] = 0;
-                matrix[i][*x + 1] = 0;
-                matrix[i][*x + 2] = 0;
+                matrix[i][pipe->x] = 0;
+                matrix[i][pipe->x + 1] = 0;
+                matrix[i][pipe->x + 2] = 0;
             }
 
-            for (int i = (HEIGHT - y) - SPACE_BTW; i > 0; i--)
+            for (int i = (HEIGHT - pipe->y) - SPACE_BTW; i > 0; i--)
             {
-                matrix[i][*x] = 0;
-                matrix[i][*x + 1] = 0;
-                matrix[i][*x + 2] = 0;
+                matrix[i][pipe->x] = 0;
+                matrix[i][pipe->x + 1] = 0;
+                matrix[i][pipe->x + 2] = 0;
             }
 
-            *x = WIDTH - 4;
+            pipe->x = WIDTH - 4;
 }
 
 #endif // !SCENARIO

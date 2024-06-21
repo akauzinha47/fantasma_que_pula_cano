@@ -3,13 +3,16 @@
 #include <windows.h>
 
 #include "scenario.h"
+#include "structs.h"
 
 
 int main()
 {
 
+    // inicializa a matriz com uma largura WIDTH e uma altura HEIGHT
     int array[HEIGHT][WIDTH];
 
+    // torna seus valores iguais à zero
     for (int i = 0; i < HEIGHT; i++)
     {
         for (int j = 0; j < WIDTH; j++)
@@ -18,79 +21,91 @@ int main()
         }
     }
 
-    // int y1 = 13;
-    // int y2 = 17;
-    // int y3 = 5;
+    // "instancia" três obstáculos 
+    Pipe first_pipe = construct_pipe();
+    Pipe second_pipe = construct_pipe(); 
+    Pipe third_pipe = construct_pipe(); 
 
-    int y  = 8;
-    int x1 = WIDTH - 4;
-    int x2 = 0;
-    int x3 = 0;
+    Sleep(200);
 
-    for (int i = (HEIGHT - y); i < (HEIGHT); i++)
+    int y1  = 5;
+    int y2  = 13;
+    int y3  = 9;
+
+    first_pipe.x = WIDTH - 4;
+    first_pipe.y = y1;
+
+    second_pipe.x = -1;
+    third_pipe.x = -1;
+
+    // inicializa o primeiro obstáculo
+    for (int i = (HEIGHT - y1); i < (HEIGHT); i++)
     {
-        array[i][x1] = 1;
-        array[i][x1 + 1] = 1;
-        array[i][x1 + 2] = 1;
+        array[i][first_pipe.x] = 1;
+        array[i][first_pipe.x + 1] = 1;
+        array[i][first_pipe.x + 2] = 1;
 
     }
 
-    for (int i = (HEIGHT - y) - SPACE_BTW; i > 0; i--)
+    for (int i = (HEIGHT - y1) - SPACE_BTW; i > 0; i--)
     {
-        array[i][x1] = 1;
-        array[i][x1 + 1] = 1;
-        array[i][x1 + 2] = 1;
+        array[i][first_pipe.x] = 1;
+        array[i][first_pipe.x + 1] = 1;
+        array[i][first_pipe.x + 2] = 1;
     }
 
     while (1)
     {
-
-        Sleep(200);
+        
+        Sleep(600);
         system("cls");
 
-        if (x1 == 0)
+        if (first_pipe.x == 0)
         {
-            restart_pipe(array, &x1, y);
+            restart_pipe(array, &first_pipe);
         }
 
-        if (x2 == 0)
+        if (second_pipe.x == 0)
         {
-            restart_pipe(array, &x2, y);
+            restart_pipe(array, &second_pipe);
         }
 
-        if (x3 == 0)
+        if (third_pipe.x == 0)
         {
-            restart_pipe(array, &x3, y);
+            restart_pipe(array, &third_pipe);
         }
 
-        if (x1 == WIDTH - 16)
+        if (first_pipe.x == WIDTH - 16)
         {
-            x2 = WIDTH - 4;
+            second_pipe.x = WIDTH - 4;
+            second_pipe.y = y2;
         }
 
-        if (x2 == WIDTH - 16)
+        if (second_pipe.x == WIDTH - 16)
         {
-            x3 = WIDTH - 4;
+            third_pipe.x = WIDTH - 4;
+            third_pipe.y = y3;
         }
 
-        if (x1 != 0)
+        if (first_pipe.x > 0)
         {
-            pipe_movement(array, x1, y);
-            x1--;
+            pipe_movement(array, &first_pipe);
+            first_pipe.x--;
         }
 
-        if (x2 != 0)
+        if (second_pipe.x > 0)
         {
-            pipe_movement(array, x2, y);
-            x2--;
+            pipe_movement(array, &second_pipe);
+            second_pipe.x--;
         }
 
-        if (x3 != 0)
+        if (third_pipe.x > 0)
         {
-            pipe_movement(array, x3, y);
-            x3--;
+            pipe_movement(array, &third_pipe);
+            third_pipe.x--;
         }
 
+        printf("%d - %d - %d\n", first_pipe.x, second_pipe.x, third_pipe.x);
         rendering(array);
     
     }
