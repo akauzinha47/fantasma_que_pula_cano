@@ -1,6 +1,10 @@
 #ifndef STRUCTS
 #define STRUCTS
 
+#define BAT_X 9
+#define BAT_Y 14
+#define BAT_VALUE 9
+
 #include <string.h>
 #include <stdio.h>
 
@@ -15,6 +19,18 @@ typedef struct {
     int score;
 
 } Player;
+
+typedef struct {
+    int x;
+    int y;
+    int value;
+
+} Bat;
+
+void gravity(Bat *bat)
+{
+    bat->y++;
+}
 
 Pipe construct_pipe()
 {
@@ -33,6 +49,16 @@ Player construct_player(char name[6])
     newplayer.score = 0;
 
     return newplayer;
+}
+
+Bat construct_bat()
+{
+    Bat newbat;
+    newbat.x = BAT_X;
+    newbat.y = BAT_Y;
+    newbat.value = BAT_VALUE;
+
+    return newbat;
 }
 
 #endif // !STRCTS

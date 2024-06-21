@@ -61,18 +61,19 @@ void rendering(int matrix[][WIDTH])
             {
                 printf("  ");
             } else if (matrix[i][j] == 9){
-                printf(" X");
+                printf("^^");
             } else {
                 printf("[]");
 
             }
+            // printf("%d ", matrix[i][j]);
         }
         
     printf("\n");     
     }
 }
 
-void restart_pipe(int matrix[][40], Pipe *pipe)
+void restart_pipe(int matrix[][WIDTH], Pipe *pipe)
 {
     for (int i = (HEIGHT - pipe->y); i < (HEIGHT); i++)
             {
@@ -89,6 +90,13 @@ void restart_pipe(int matrix[][40], Pipe *pipe)
             }
 
             pipe->x = WIDTH - 4;
+}
+
+void flap(int array[][WIDTH], Bat *bat)
+{
+    array[bat->y][bat->x] = 0;
+    bat->y--;
+
 }
 
 #endif // !SCENARIO
