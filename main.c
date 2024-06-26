@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <windows.h>
+#include <conio.h>
 
 #include "scenario.h"
 #include "structs.h"
@@ -56,11 +57,45 @@ int main()
 
     // inicializa o primeiro obstáculo
 
+    int jump = 0;
+    int n_jumps = 0;
+
     while (1)
     {
 
+                // Check for keyboard input
+        if (_kbhit())
+        {
+            char tecla = _getch();
+
+            if (tecla == 'W')
+            {
+                 if (jump == 0)
+                {
+                    jump++;
+                    n_jumps = 3;
+                }
+            }
+        }
+
+        if (jump > 3)
+        {
+            jump = 3;
+        }
+
+        if (jump != 0 && n_jumps > 0)
+        {
+            flap(map, &bat);
+            n_jumps--;
+        }
+
+        if (n_jumps == 0)
+        {
+            jump = 0;
+        }
+
         map[bat.y][bat.x] = BAT_VALUE;
-        Sleep(600);
+        Sleep(300);
         system("cls");
 
         if (first_pipe.x == 0)
@@ -108,22 +143,9 @@ int main()
             third_pipe.x--;
         }
 
-        if (first_pipe.x % 3 == 0)
-        {
-            flap(map, &bat);
-            flap(map, &bat);
-            flap(map, &bat);
-            flap(map, &bat);
-
-
-        }
-
-        // every round events
-        // flap(map, &bat);
-        // flap(map, &bat);
         gravity(map, &bat);
 
-        printf("%d - %d - %d | %d - %d\n", first_pipe.x, second_pipe.x, third_pipe.x, bat.y, bat.value);
+        printf("%d - %d - %d | %d - %d - %d\n", first_pipe.x, second_pipe.x, third_pipe.x, bat.y, jump, n_jumps);
         rendering(map);
     
     }

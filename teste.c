@@ -1,25 +1,31 @@
 #include <stdio.h>
-#include <time.h>
+#include <windows.h>
 
-int main() 
+int main()
 {
+    int count = 0;
 
+    while (1)
+    {
+        system("cls"); // Clear screen for Windows (use "clear" for Unix/Linux)
 
-    struct timespec start, end;
-    long long diff_ns;
+        if (_kbhit())
+        {
+            char tecla = _getch();
 
-    clock_gettime(3, &start);
-    // Perform some task or delay to observe the time difference
-    // For example, a small delay to observe nanosecond difference
-    for (int i = 0; i < 1000; i++) {
-        // Some minimal computation or delay
+            if (tecla == ' ')
+            {
+                // Increment count only when spacebar is pressed
+                count+=2;
+            }
+        }
+        
+        // Remove the decrement statement outside _kbhit block
+        // count--; // Remove this line
+        count--;
+        printf("    %d  ", count);
+        Sleep(500); // Adjust sleep time as needed
     }
-    clock_gettime(3, &end);
-
-    // Calculate the time difference in nanoseconds
-    diff_ns = (end.tv_sec - start.tv_sec) * 1000000000LL + (end.tv_nsec - start.tv_nsec);
-
-    printf("Time Difference: %lld nanoseconds\n", diff_ns);
 
     return 0;
 }

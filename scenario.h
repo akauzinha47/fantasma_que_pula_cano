@@ -61,7 +61,7 @@ void rendering(int matrix[][WIDTH])
             {
                 printf("   ");
             } else if (matrix[i][j] == 9){
-                printf(" \x1b[31m^^");
+                printf("\x1b[35m^~^");
 
             } else if (matrix[i][j] == 2)
             {

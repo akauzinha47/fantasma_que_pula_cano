@@ -29,7 +29,7 @@ typedef struct {
 
 void flap(int array[][WIDTH], Bat *bat)
 {
-    bat->y--;
+    bat->y-=2;
     array[(bat->y) + 2][bat->x] = 0;
 }
 
