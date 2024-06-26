@@ -59,7 +59,7 @@ int main()
     while (1)
     {
 
-        map[bat.y][bat.x] = bat.value;
+        map[bat.y][bat.x] = BAT_VALUE;
         Sleep(600);
         system("cls");
 
@@ -108,12 +108,22 @@ int main()
             third_pipe.x--;
         }
 
-        if (first_pipe.x % 2 == 0)
+        if (first_pipe.x % 3 == 0)
         {
             flap(map, &bat);
+            flap(map, &bat);
+            flap(map, &bat);
+            flap(map, &bat);
+
+
         }
 
-        printf("%d - %d - %d\n", first_pipe.x, second_pipe.x, third_pipe.x);
+        // every round events
+        // flap(map, &bat);
+        // flap(map, &bat);
+        gravity(map, &bat);
+
+        printf("%d - %d - %d | %d - %d\n", first_pipe.x, second_pipe.x, third_pipe.x, bat.y, bat.value);
         rendering(map);
     
     }

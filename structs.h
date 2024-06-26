@@ -27,11 +27,16 @@ typedef struct {
 
 } Bat;
 
+void flap(int array[][WIDTH], Bat *bat)
+{
+    bat->y--;
+    array[(bat->y) + 2][bat->x] = 0;
+}
 
-
-void gravity(Bat *bat)
+void gravity(int array[][WIDTH], Bat *bat)
 {
     bat->y++;
+    array[(bat->y) - 2][bat->x] = 0;
 }
 
 Pipe construct_pipe()

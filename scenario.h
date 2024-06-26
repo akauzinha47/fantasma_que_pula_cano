@@ -3,7 +3,7 @@
 
 #define WIDTH 40
 #define HEIGHT 20
-#define SPACE_BTW 5
+#define SPACE_BTW 6
 
 #include <stdio.h>
 
@@ -49,7 +49,7 @@ void rendering(int matrix[][WIDTH])
    
     for (int i = 0; i < WIDTH; i++)
     {
-        printf("[]");
+        printf(" []");
     }
     printf("\n");
 
@@ -59,11 +59,16 @@ void rendering(int matrix[][WIDTH])
         {
             if (matrix[i][j] == 0)
             {
-                printf("  ");
+                printf("   ");
             } else if (matrix[i][j] == 9){
-                printf("\x1b[31m^^");
+                printf(" \x1b[31m^^");
+
+            } else if (matrix[i][j] == 2)
+            {
+                printf(" 2");
+            
             } else {
-                printf("\x1b[32m[]");
+                printf(" \x1b[32m[]");
 
             }
             // printf("%d ", matrix[i][j]);
@@ -90,13 +95,6 @@ void restart_pipe(int matrix[][WIDTH], Pipe *pipe)
             }
 
             pipe->x = WIDTH - 4;
-}
-
-void flap(int array[][WIDTH], Bat *bat)
-{
-    array[bat->y][bat->x] = 0;
-    bat->y--;
-
 }
 
 #endif // !SCENARIO

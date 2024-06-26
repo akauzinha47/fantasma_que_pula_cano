@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/Aluno/Desktop/folder_agora_vai",
-      "program": "c:/Users/Aluno/Desktop/folder_agora_vai/build/Debug/outDebug",
+      "cwd": "c:/Users/Aluno/Desktop/folderzin/flappyBird_C",
+      "program": "c:/Users/Aluno/Desktop/folderzin/flappyBird_C/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
